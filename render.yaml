@@ -1,0 +1,35 @@
+services:
+  - type: web
+    name: voicecoach-backend
+    runtime: node
+    plan: free
+    region: oregon
+    buildCommand: npm install
+    startCommand: npm start --workspace=server
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 8080
+      - key: CLIENT_ORIGIN
+        value: https://*.vercel.app
+      - key: GEMINI_MODEL
+        value: gemini-3.5-flash-lite
+      - key: GEMINI_TTS_MODEL
+        value: gemini-2.5-flash-preview-tts
+      - key: GEMINI_TTS_VOICE
+        value: Kore
+      - key: GEMINI_TIMEOUT_MS
+        value: 30000
+      - key: MAX_AUDIO_MB
+        value: 8
+      - key: MAX_ANSWER_SECONDS
+        value: 130
+      - key: AI_TURNS_PER_HOUR
+        value: 30
+      - key: TTS_PER_HOUR
+        value: 60
+      - key: GLOBAL_RATE_LIMIT_PER_15MIN
+        value: 300
