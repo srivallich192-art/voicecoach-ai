@@ -1,0 +1,15 @@
+entrypoint = "server/src/index.js"
+modules = ["nodejs-20"]
+run = "npm start --workspace=server"
+
+[nix]
+channel = "stable-24_05"
+
+[deployment]
+run = ["npm", "start", "--workspace=server"]
+deploymentTarget = "cloudrun"
+
+[[ports]]
+localPort = 8080
+externalPort = 80
+
